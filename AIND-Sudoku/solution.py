@@ -43,10 +43,8 @@ def naked_twins(values):
     strategy repeatedly).
     """
     # TODO: Implement this function!
-	# get all boxes with length equals to 2	
-    #print('--------------------------')
     import itertools
-    #display(values)
+
     twins = [] #[(unit, [naked pairs])]
     for unit in unitlist:
         two_digit_boxes = [box for box in unit if len(values[box]) == 2]
@@ -58,10 +56,9 @@ def naked_twins(values):
     for unit, naked_twins in twins:
         for twin in naked_twins:
             for b in [box for box in unit if box not in twin]:
-                values[b] = values[b].replace(values[twin[0]], '')
-    #print('**************************')
-    #display(values)
-    #print('--------------------------')
+                for v in values[twin[0]]:
+                    values[b] = values[b].replace(v, '')
+
     return values
 
 
