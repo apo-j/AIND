@@ -43,9 +43,26 @@ def naked_twins(values):
     strategy repeatedly).
     """
     # TODO: Implement this function!
-	# get all boxes with length equals to 2
-    pairs = [(box, values[box]) for box in boxes if len(values[box]) == 2]
-    raise NotImplementedError
+	# get all boxes with length equals to 2	
+    #print('--------------------------')
+    import itertools
+    #display(values)
+    twins = [] #[(unit, [naked pairs])]
+    for unit in unitlist:
+        two_digit_boxes = [box for box in unit if len(values[box]) == 2]
+        if len(two_digit_boxes) > 1:
+            naked_twins = [subset for subset in itertools.combinations(two_digit_boxes, 2) if values[subset[0]] == values[subset[1]]]
+            if len(naked_twins) > 0:
+                twins.append((unit, naked_twins)) 
+                
+    for unit, naked_twins in twins:
+        for twin in naked_twins:
+            for b in [box for box in unit if box not in twin]:
+                values[b] = values[b].replace(values[twin[0]], '')
+    #print('**************************')
+    #display(values)
+    #print('--------------------------')
+    return values
 
 
 def eliminate(values):
@@ -124,6 +141,9 @@ def reduce_puzzle(values):
 
         # Your code here: Use the Eliminate Strategy
         values = eliminate(values)
+		
+        # Use the Naked twins 
+        values = naked_twins(values)
         
         # Your code here: Use the Only Choice Strategy
         values = only_choice(values)
