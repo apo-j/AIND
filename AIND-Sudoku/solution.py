@@ -8,12 +8,11 @@ square_units = [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','45
 unitlist = row_units + column_units + square_units
 
 # TODO: Update the unit list to add the new diagonal units
-diagnoal_units = [r + c for r, c in zip([row for row in rows],[col for col in cols])] + [r + c for r, c in zip([row for row in rows],[col for col in list(reversed(cols))])]
-unitlist = unitlist #+ diagnoal_units
+diagnoal_units = [[r + c for r, c in zip([row for row in rows],[col for col in cols])], [r + c for r, c in zip([row for row in rows],[col for col in list(reversed(cols))])]]
+unitlist = unitlist + diagnoal_units
 
 units = dict((s, [u for u in unitlist if s in u]) for s in boxes)
 peers = dict((s, set(sum(units[s],[]))-set([s])) for s in boxes)
-
 
 def naked_twins(values):
     """Eliminate values using the naked twins strategy.
@@ -60,7 +59,6 @@ def naked_twins(values):
                     values[b] = values[b].replace(v, '')
 
     return values
-
 
 def eliminate(values):
     """Apply the eliminate strategy to a Sudoku puzzle
