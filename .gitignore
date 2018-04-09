@@ -101,4 +101,3 @@ ENV/
 .mypy_cache/
 
 AIND-Isolation/.idea
-AIND-Isolation/.udacity-pa
