@@ -1,0 +1,2 @@
+https://github.com/keithblaha/AIND-Recognizer/blob/86712aef8120cfb188e14686adbea378b44634b0/asl_recognizer.ipynb
+https://github.com/vaishaks/aind/blob/master/AIND-Recognizer/asl_recognizer.ipynb
